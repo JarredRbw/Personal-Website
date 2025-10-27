@@ -2,6 +2,15 @@
 
 一个现代化的个人摄影作品集网站，具有流畅的动画效果和优秀的用户体验。
 
+## 🌐 在线预览
+
+- **GitHub**: [https://github.com/JarredRbw/Personal-Website](https://github.com/JarredRbw/Personal-Website)
+- **Vercel**: 部署后添加链接
+
+## 📸 在线网站
+
+访问我的个人摄影作品集：[查看链接](#)（Vercel 部署后更新）
+
 ## 功能特色
 
 ### 🎨 现代化设计
