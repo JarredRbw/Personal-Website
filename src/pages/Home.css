@@ -30,28 +30,31 @@
 }
 
 .hero h1 {
-  font-size: 5.5rem;
-  font-weight: 700;
+  font-size: 6rem;
+  font-weight: 800;
   margin-bottom: 0;
-  letter-spacing: 0.01em;
-  line-height: 1.1;
+  letter-spacing: 0.05em;
+  line-height: 1.0;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .hero-title {
-  letter-spacing: 0.01em !important;
-  line-height: 1.1 !important;
-  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  line-height: 1.0 !important;
+  font-weight: 800 !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3) !important;
 }
 
 .hero-subtitle {
-  font-size: 1.3rem;
-  line-height: 1.6;
+  font-size: 1.4rem;
+  line-height: 1.4;
   margin: 0;
-  opacity: 0.9;
-  font-weight: 400;
-  letter-spacing: 0.02em;
+  opacity: 0.95;
+  font-weight: 500;
+  letter-spacing: 0.03em;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
 }
 
 .hero p {
@@ -229,24 +232,27 @@
   }
   
   .hero h1 {
-    font-size: 3.5rem;
-    line-height: 1.15;
-    font-weight: 700;
-    letter-spacing: 0.01em;
+    font-size: 4rem;
+    line-height: 1.05;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
   }
   
   .hero-title {
-    font-size: 3.5rem !important;
-    line-height: 1.15 !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.01em !important;
+    font-size: 4rem !important;
+    line-height: 1.05 !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.05em !important;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3) !important;
   }
   
   .hero-subtitle {
-    font-size: 1.1rem;
-    line-height: 1.5;
-    font-weight: 400;
-    letter-spacing: 0.02em;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
   }
   
   .section-title {
