@@ -35,16 +35,7 @@
 
 /* 遮罩层 */
 .image-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(102, 126, 234, 0.4) 0%,
-    rgba(118, 75, 162, 0.4) 100%
-  );
+  display: none;
 }
 
 /* 导航按钮 */
@@ -87,13 +78,7 @@
 
 /* 指示器 */
 .carousel-indicators {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 12px;
-  z-index: 10;
+  display: none;
 }
 
 .indicator {
@@ -119,13 +104,7 @@
 
 /* 图片标题 */
 .image-title-overlay {
-  position: absolute;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  text-align: center;
-  color: white;
+  display: none;
 }
 
 .image-title-overlay h3 {
