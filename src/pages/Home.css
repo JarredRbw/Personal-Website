@@ -15,8 +15,8 @@
   top: 4rem;
   left: 3rem;
   z-index: 100;
-  max-width: 1000px;
-  width: 50%;
+  max-width: 90%;
+  width: 90%;
   padding: 0;
   text-align: left;
 }
@@ -35,18 +35,20 @@
   font-size: 6rem;
   font-weight: 400;
   margin-bottom: 0;
-  letter-spacing: 0.05em;
-  line-height: 1.2;
+  letter-spacing: 0.2em;
+  line-height: 1.0;
   font-family: 'Times New Roman', 'Georgia', 'Times', serif;
   text-shadow: none;
+  white-space: nowrap;
 }
 
 .hero-title {
-  letter-spacing: 0.05em !important;
-  line-height: 1.2 !important;
+  letter-spacing: 0.2em !important;
+  line-height: 1.0 !important;
   font-weight: 400 !important;
   text-shadow: none !important;
   font-family: 'Times New Roman', 'Georgia', 'Times', serif !important;
+  white-space: nowrap !important;
 }
 
 .hero-subtitle {
@@ -237,21 +239,23 @@
   }
   
   .hero h1 {
-    font-size: 3.5rem;
-    line-height: 1.2;
+    font-size: 3rem;
+    line-height: 1.0;
     font-weight: 400;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.15em;
     text-shadow: none;
     font-family: 'Times New Roman', 'Georgia', 'Times', serif;
+    white-space: nowrap;
   }
   
   .hero-title {
-    font-size: 3.5rem !important;
-    line-height: 1.2 !important;
+    font-size: 3rem !important;
+    line-height: 1.0 !important;
     font-weight: 400 !important;
-    letter-spacing: 0.05em !important;
+    letter-spacing: 0.15em !important;
     text-shadow: none !important;
     font-family: 'Times New Roman', 'Georgia', 'Times', serif !important;
+    white-space: nowrap !important;
   }
   
   .hero-subtitle {
