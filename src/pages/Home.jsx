@@ -81,6 +81,14 @@ const Home = () => {
           <motion.h1 className="hero-title" variants={itemVariants}>
             WELCOME TO MY WORLD
           </motion.h1>
+        </motion.div>
+        
+        <motion.div 
+          className="hero-subtitle-container"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           <motion.p className="hero-subtitle" variants={itemVariants}>
             Capturing life through the lens,
             <br />
