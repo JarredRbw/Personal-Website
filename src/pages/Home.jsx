@@ -1,9 +1,22 @@
 import { motion } from 'framer-motion'
 import { ArrowDown, Camera, BookOpen, User } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import HeroCarousel from '../components/HeroCarousel'
 import './Home.css'
 
 const Home = () => {
+  // 轮播图片配置
+  const carouselImages = [
+    {
+      url: '/images/20240716-_DSC4307.jpg',
+      title: '创作的专注瞬间'
+    },
+    {
+      url: '/images/baita.jpg',
+      title: '美好时光的见证'
+    }
+  ]
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -56,6 +69,9 @@ const Home = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        {/* 图片轮播背景 */}
+        <HeroCarousel images={carouselImages} />
+        
         <motion.div 
           className="hero-content"
           variants={containerVariants}
