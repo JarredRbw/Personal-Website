@@ -79,7 +79,7 @@ const Home = () => {
           animate="visible"
         >
           <motion.h1 className="hero-title" variants={itemVariants}>
-            W E L C O M E TO MY W O R L D
+            WELCOME TO MY WORLD
           </motion.h1>
         </motion.div>
         

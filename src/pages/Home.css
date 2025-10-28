@@ -35,14 +35,14 @@
   font-size: 6rem;
   font-weight: 400;
   margin-bottom: 0;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.05em;
   line-height: 1.2;
   font-family: 'Times New Roman', 'Georgia', 'Times', serif;
   text-shadow: none;
 }
 
 .hero-title {
-  letter-spacing: 0.15em !important;
+  letter-spacing: 0.05em !important;
   line-height: 1.2 !important;
   font-weight: 400 !important;
   text-shadow: none !important;
@@ -240,7 +240,7 @@
     font-size: 3.5rem;
     line-height: 1.2;
     font-weight: 400;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.05em;
     text-shadow: none;
     font-family: 'Times New Roman', 'Georgia', 'Times', serif;
   }
@@ -249,7 +249,7 @@
     font-size: 3.5rem !important;
     line-height: 1.2 !important;
     font-weight: 400 !important;
-    letter-spacing: 0.15em !important;
+    letter-spacing: 0.05em !important;
     text-shadow: none !important;
     font-family: 'Times New Roman', 'Georgia', 'Times', serif !important;
   }
