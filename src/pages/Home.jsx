@@ -8,8 +8,8 @@ const Home = () => {
   // 轮播图片配置
   const carouselImages = [
     {
-      url: '/images/20240716-_DSC4307.jpg',
-      title: '创作的专注瞬间'
+      url: '/images/HeadPicture.jpeg',
+      title: '个人头像'
     },
     {
       url: '/images/baita.jpg',
