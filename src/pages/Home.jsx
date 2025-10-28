@@ -78,11 +78,13 @@ const Home = () => {
           initial="hidden"
           animate="visible"
         >
-          <motion.h1 className="vertical-text" variants={itemVariants}>
-            W E L C O M E T O M Y W O R L D
+          <motion.h1 className="hero-title" variants={itemVariants}>
+            WELCOME TO MY WORLD
           </motion.h1>
-          <motion.p variants={itemVariants}>
-            Capturing life through the lens, sharing insights through words
+          <motion.p className="hero-subtitle" variants={itemVariants}>
+            Capturing life through the lens,
+            <br />
+            sharing insights through words
           </motion.p>
           <motion.div variants={itemVariants}>
             <Link to="/photography" className="cta-button">
