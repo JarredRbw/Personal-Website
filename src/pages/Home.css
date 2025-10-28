@@ -15,7 +15,8 @@
   top: 3rem;
   left: 2rem;
   z-index: 100;
-  max-width: 800px;
+  max-width: 5800px;
+  width: 100%;
   padding: 0;
   text-align: left;
 }
@@ -25,7 +26,8 @@
   bottom: 4rem;
   right: 4rem;
   z-index: 100;
-  max-width: 500px;
+  max-width: 700px;
+  width: 40%;
   text-align: right;
 }
 
@@ -33,14 +35,14 @@
   font-size: 6rem;
   font-weight: 800;
   margin-bottom: 0;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   line-height: 1.0;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .hero-title {
-  letter-spacing: 0.05em !important;
+  letter-spacing: 0.08em !important;
   line-height: 1.0 !important;
   font-weight: 800 !important;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3) !important;
@@ -223,19 +225,21 @@
     top: 2rem;
     left: 1.5rem;
     max-width: calc(100% - 3rem);
+    width: calc(100% - 3rem);
   }
   
   .hero-subtitle-container {
     bottom: 3rem;
     right: 3rem;
     max-width: calc(100% - 6rem);
+    width: calc(100% - 6rem);
   }
   
   .hero h1 {
     font-size: 4rem;
     line-height: 1.05;
     font-weight: 800;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
   }
   
@@ -243,7 +247,7 @@
     font-size: 4rem !important;
     line-height: 1.05 !important;
     font-weight: 800 !important;
-    letter-spacing: 0.05em !important;
+    letter-spacing: 0.08em !important;
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3) !important;
   }
   
