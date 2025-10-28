@@ -86,11 +86,6 @@ const Home = () => {
             <br />
             sharing insights through words
           </motion.p>
-          <motion.div variants={itemVariants}>
-            <Link to="/photography" className="cta-button">
-              探索作品
-            </Link>
-          </motion.div>
         </motion.div>
         
         <motion.div 
