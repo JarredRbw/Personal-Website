@@ -12,8 +12,8 @@
 
 .hero-content {
   position: absolute;
-  top: 4rem;
-  left: 4rem;
+  top: 3rem;
+  left: 2rem;
   z-index: 100;
   max-width: 800px;
   padding: 0;
@@ -31,17 +31,17 @@
 
 .hero h1 {
   font-size: 5.5rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 0;
-  letter-spacing: -0.02em;
-  line-height: 1.05;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .hero-title {
-  letter-spacing: -0.02em !important;
-  line-height: 1.05 !important;
-  font-weight: 600 !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1.1 !important;
+  font-weight: 700 !important;
 }
 
 .hero-subtitle {
@@ -50,7 +50,7 @@
   margin: 0;
   opacity: 0.9;
   font-weight: 400;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.02em;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -217,9 +217,9 @@
 /* 响应式设计 */
 @media (max-width: 768px) {
   .hero-content {
-    top: 3rem;
-    left: 3rem;
-    max-width: calc(100% - 6rem);
+    top: 2rem;
+    left: 1.5rem;
+    max-width: calc(100% - 3rem);
   }
   
   .hero-subtitle-container {
@@ -230,20 +230,23 @@
   
   .hero h1 {
     font-size: 3.5rem;
-    line-height: 1.1;
-    font-weight: 600;
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: 0.01em;
   }
   
   .hero-title {
     font-size: 3.5rem !important;
-    line-height: 1.1 !important;
-    font-weight: 600 !important;
+    line-height: 1.15 !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.01em !important;
   }
   
   .hero-subtitle {
     font-size: 1.1rem;
     line-height: 1.5;
     font-weight: 400;
+    letter-spacing: 0.02em;
   }
   
   .section-title {
