@@ -1,60 +1,45 @@
-import { useState, useEffect } from 'react'
-import { motion, useMotionValue } from 'framer-motion'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
+import { motion, useMotionValue, useSpring } from 'framer-motion'
 import './HeroCarousel.css'
 
 const HeroCarousel = ({ images }) => {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const containerRef = useRef(null)
+  const [mouseX, setMouseX] = useState(0)
   
-  // 使用 useMotionValue 跟踪拖动
-  const x = useMotionValue(currentIndex * -100)
+  // 使用 useMotionValue 追踪鼠标
+  const x = useMotionValue(0)
+  const smoothX = useSpring(x, { stiffness: 300, damping: 30 })
 
-  // 拖动结束
-  const handleDragEnd = (event, info) => {
-    const threshold = 50
-    
-    if (info.offset.x > threshold && currentIndex > 0) {
-      // 向右拖动，显示上一张
-      const newIndex = currentIndex - 1
-      setCurrentIndex(newIndex)
-    } else if (info.offset.x < -threshold && currentIndex < images.length - 1) {
-      // 向左拖动，显示下一张
-      const newIndex = currentIndex + 1
-      setCurrentIndex(newIndex)
-    }
-  }
-
-  // 监听 currentIndex 变化，更新位置
+  // 监听鼠标移动
   useEffect(() => {
-    x.set(currentIndex * -100)
-  }, [currentIndex, x])
-
-  // 切换到下一张
-  const nextImage = () => {
-    if (currentIndex < images.length - 1) {
-      setCurrentIndex(currentIndex + 1)
+    const handleMouseMove = (e) => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect()
+        const mouseXPercent = ((e.clientX - rect.left) / rect.width) * 100
+        
+        // 将鼠标位置转换为图片偏移量
+        // 鼠标在左边时显示第一张，在右边时显示第二张
+        const maxOffset = (images.length - 1) * -100
+        const offset = ((mouseXPercent - 50) / 50) * maxOffset * 0.5
+        
+        x.set(offset)
+        setMouseX(e.clientX)
+      }
     }
-  }
 
-  // 切换到上一张
-  const prevImage = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1)
+    const container = containerRef.current
+    if (container) {
+      container.addEventListener('mousemove', handleMouseMove)
+      return () => container.removeEventListener('mousemove', handleMouseMove)
     }
-  }
+  }, [images.length, x])
 
   return (
-    <div className="hero-carousel" style={{ '--image-count': images.length }}>
-      {/* 图片容器 - 使用 draggable */}
+    <div className="hero-carousel" ref={containerRef} style={{ '--image-count': images.length }}>
+      {/* 图片容器 - 随鼠标移动 */}
       <motion.div
         className="hero-images-container"
-        style={{ x }}
-        drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={0.1}
-        onDragEnd={handleDragEnd}
-        animate={{ x: `${currentIndex * -100}%` }}
-        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        style={{ x: smoothX }}
       >
         {images.map((image, index) => (
           <div
@@ -66,22 +51,6 @@ const HeroCarousel = ({ images }) => {
           </div>
         ))}
       </motion.div>
-
-      {/* 导航按钮 */}
-      <button 
-        className="nav-button nav-button-left" 
-        onClick={prevImage}
-        disabled={currentIndex === 0}
-      >
-        <ChevronLeft size={32} />
-      </button>
-      <button 
-        className="nav-button nav-button-right" 
-        onClick={nextImage}
-        disabled={currentIndex === images.length - 1}
-      >
-        <ChevronRight size={32} />
-      </button>
     </div>
   )
 }
