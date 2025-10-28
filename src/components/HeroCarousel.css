@@ -16,11 +16,17 @@
   cursor: grabbing;
 }
 
+/* 图片容器 - 水平排列 */
+.hero-images-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
 /* 图片背景 */
 .hero-image {
-  position: absolute;
-  top: 0;
-  left: 0;
+  flex: 0 0 100%;
   width: 100%;
   height: 100%;
   overflow: hidden;

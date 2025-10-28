@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import './HeroCarousel.css'
 
@@ -8,14 +8,7 @@ const HeroCarousel = ({ images }) => {
   const [touchStart, setTouchStart] = useState(null)
   const [touchEnd, setTouchEnd] = useState(null)
 
-  // 自动轮播
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
-    }, 5000) // 每5秒切换一张
-
-    return () => clearInterval(timer)
-  }, [images.length])
+  // 移除自动轮播，只响应鼠标/触摸滑动
 
   // 切换到下一张
   const nextImage = () => {
@@ -94,20 +87,26 @@ const HeroCarousel = ({ images }) => {
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
     >
-      {/* 图片背景 */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentIndex}
-          className="hero-image"
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-        >
-          <img src={images[currentIndex].url} alt={images[currentIndex].title} />
-          <div className="image-overlay" />
-        </motion.div>
-      </AnimatePresence>
+      {/* 图片背景 - 使用滑动切换 */}
+      <motion.div
+        className="hero-images-container"
+        animate={{ x: `-${currentIndex * 100}%` }}
+        transition={{ 
+          type: "spring",
+          stiffness: 300,
+          damping: 30
+        }}
+      >
+        {images.map((image, index) => (
+          <motion.div
+            key={index}
+            className="hero-image"
+          >
+            <img src={image.url} alt={image.title} />
+            <div className="image-overlay" />
+          </motion.div>
+        ))}
+      </motion.div>
 
       {/* 导航按钮 */}
       <button className="nav-button nav-button-left" onClick={prevImage}>
@@ -117,31 +116,6 @@ const HeroCarousel = ({ images }) => {
         <ChevronRight size={32} />
       </button>
 
-      {/* 指示器 */}
-      <div className="carousel-indicators">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            className={`indicator ${index === currentIndex ? 'active' : ''}`}
-            onClick={() => setCurrentIndex(index)}
-          />
-        ))}
-      </div>
-
-      {/* 图片标题 */}
-      <div className="image-title-overlay">
-        <AnimatePresence mode="wait">
-          <motion.h3
-            key={currentIndex}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-          >
-            {images[currentIndex].title}
-          </motion.h3>
-        </AnimatePresence>
-      </div>
     </div>
   )
 }
