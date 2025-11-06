@@ -1,63 +1,101 @@
-/* 关于页面样式 */
+/* ============================================
+   关于页面样式
+   ============================================ */
+
+/* 页面容器 - 控制整个About页面的位置和间距 */
 .about-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 2rem 2rem 4rem 2rem;
+  background: #fafafa;
 }
 
-/* 个人介绍区域 */
-.about-hero {
-  margin-bottom: 6rem;
+/* Section之间的间距 */
+.about-container > section {
+  margin-bottom: 3rem;
 }
 
-.hero-content {
+/* ============================================
+   个人介绍区域 - 完全重构，使用新类名避免冲突
+   ============================================ */
+
+/* 介绍卡片容器 */
+.about-intro {
+  margin-bottom: 3rem;
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* 内容包装器 - 使用grid布局，更可靠 */
+.about-intro .intro-wrapper {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 4rem;
+  grid-template-columns: 300px 1fr;
+  gap: 3rem;
   align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.profile-image {
-  text-align: center;
+/* 头像区域 */
+.about-intro .intro-avatar {
+  width: 300px;
+  height: 300px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.profile-image img {
+.about-intro .intro-avatar img {
   width: 300px;
   height: 300px;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  border: 4px solid white;
+  display: block;
 }
 
-.hero-text h1 {
-  font-size: 3rem;
-  font-weight: 300;
-  margin-bottom: 1rem;
+/* 文字区域 */
+.about-intro .intro-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-intro .intro-text h1 {
+  font-size: 2.8rem;
+  font-weight: 400;
+  margin: 0 0 1rem 0;
   color: #333;
+  line-height: 1.2;
 }
 
-.subtitle {
-  font-size: 1.3rem;
+.about-intro .intro-subtitle {
+  font-size: 1.25rem;
   color: #667eea;
-  margin-bottom: 2rem;
+  margin: 0 0 1.5rem 0;
   font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
-.description {
-  font-size: 1.1rem;
+.about-intro .intro-description {
+  font-size: 1.05rem;
   line-height: 1.8;
-  color: #666;
-  margin-bottom: 2rem;
+  color: #555;
+  margin: 0 0 2rem 0;
+  max-width: 600px;
 }
 
-.contact-info {
+.about-intro .intro-contact {
   display: flex;
   gap: 2rem;
-  margin-bottom: 2rem;
+  margin: 0 0 2rem 0;
 }
 
-.info-item {
+.about-intro .intro-contact-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -65,12 +103,13 @@
   font-weight: 500;
 }
 
-.social-links {
+.about-intro .intro-social {
   display: flex;
   gap: 1rem;
+  margin: 0;
 }
 
-.social-link {
+.about-intro .intro-social-link {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -83,82 +122,56 @@
   transition: all 0.3s ease;
 }
 
-.social-link:hover {
+.about-intro .intro-social-link:hover {
   background: #667eea;
   color: white;
   transform: translateY(-3px);
 }
 
-/* 技能展示 */
-.skills-section {
-  margin-bottom: 6rem;
-}
-
+/* Section标题样式 - 用于成就和理念部分 */
 .section-title {
   text-align: center;
   font-size: 2.5rem;
-  font-weight: 300;
-  margin-bottom: 3rem;
+  font-weight: 400;
+  margin-bottom: 2.5rem;
   color: #333;
+  position: relative;
+  padding-bottom: 1rem;
 }
 
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.skill-item {
-  background: white;
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.skill-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.skill-name {
-  font-weight: 600;
-  color: #333;
-  font-size: 1.1rem;
-}
-
-.skill-percentage {
-  color: #667eea;
-  font-weight: 600;
-}
-
-.skill-bar {
-  height: 8px;
-  background: #f0f0f0;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.skill-progress {
-  height: 100%;
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 4px;
-  transition: width 1s ease;
+  border-radius: 2px;
 }
 
 /* 成就时间线 */
 .achievements-section {
-  margin-bottom: 6rem;
-}
-
-.timeline {
+  margin-bottom: 3rem;
+  background: white;
+  padding: 3.5rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
   position: relative;
-  max-width: 800px;
-  margin: 0 auto;
+  overflow: visible; /* 确保timeline可见 */
+  /* 移除!important，让framer-motion控制动画 */
 }
 
-.timeline::before {
+.achievements-section .timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 0;
+  display: block;
+}
+
+.achievements-section .timeline::before {
   content: '';
   position: absolute;
   left: 50%;
@@ -167,24 +180,26 @@
   width: 2px;
   background: linear-gradient(to bottom, #667eea, #764ba2);
   transform: translateX(-50%);
+  z-index: 1;
 }
 
-.timeline-item {
+.achievements-section .timeline-item {
   position: relative;
   margin-bottom: 3rem;
   display: flex;
   align-items: center;
+  /* 让framer-motion控制opacity，但确保元素结构可见 */
 }
 
-.timeline-item:nth-child(odd) {
+.achievements-section .timeline-item:nth-child(odd) {
   flex-direction: row;
 }
 
-.timeline-item:nth-child(even) {
+.achievements-section .timeline-item:nth-child(even) {
   flex-direction: row-reverse;
 }
 
-.timeline-marker {
+.achievements-section .timeline-marker {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -201,39 +216,47 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.timeline-content {
-  background: white;
+.achievements-section .timeline-content {
+  background: #f8f9ff;
   padding: 2rem;
   border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e8f0ff;
   width: 45%;
   position: relative;
+  transition: all 0.3s ease;
 }
 
-.timeline-item:nth-child(odd) .timeline-content {
+.achievements-section .timeline-content:hover {
+  background: #f0f4ff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.achievements-section .timeline-item:nth-child(odd) .timeline-content {
   margin-right: auto;
   margin-left: 0;
 }
 
-.timeline-item:nth-child(even) .timeline-content {
+.achievements-section .timeline-item:nth-child(even) .timeline-content {
   margin-left: auto;
   margin-right: 0;
 }
 
-.timeline-year {
+.achievements-section .timeline-year {
   color: #667eea;
   font-weight: 600;
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
 
-.timeline-content h3 {
+.achievements-section .timeline-content h3 {
   font-size: 1.3rem;
   margin-bottom: 1rem;
   color: #333;
 }
 
-.timeline-content p {
+.achievements-section .timeline-content p {
   color: #666;
   line-height: 1.6;
 }
@@ -241,10 +264,15 @@
 /* 个人理念 */
 .philosophy-section {
   text-align: center;
+  margin-bottom: 0;
+  background: white;
+  padding: 3.5rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
 }
 
 .philosophy-content {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -269,14 +297,16 @@
 .point {
   text-align: center;
   padding: 2rem;
-  background: white;
+  background: #f8f9ff;
   border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  border: 1px solid #e8f0ff;
+  transition: all 0.3s ease;
 }
 
 .point:hover {
+  background: #f0f4ff;
   transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
 }
 
 .point h4 {
@@ -290,66 +320,158 @@
   line-height: 1.6;
 }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
+/* ============================================
+   响应式设计
+   ============================================ */
+
+/* 中等屏幕 (平板) */
+@media (max-width: 968px) {
+  /* 调整容器padding，保持顶部间距较小 */
   .about-container {
-    padding: 2rem 1rem;
+    padding: 0.5rem 1.5rem 3rem 1.5rem; /* 顶部padding保持0.5rem */
+  }
+
+  .about-intro,
+  .achievements-section,
+  .philosophy-section {
+    padding: 3rem 2rem;
+  }
+
+  /* 中等屏幕改为纵向布局 */
+  .about-intro .intro-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .about-intro .intro-avatar {
+    width: 250px;
+    height: 250px;
+  }
+
+  .about-intro .intro-avatar img {
+    width: 250px;
+    height: 250px;
+  }
+
+  .about-intro .intro-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .about-intro .intro-description {
+    max-width: 100%;
+  }
+
+  .about-intro .intro-contact {
+    justify-content: center;
+  }
+}
+
+/* 小屏幕 (手机) */
+@media (max-width: 768px) {
+  /* 移动端调整容器padding */
+  .about-container {
+    padding: 0.5rem 1rem 2rem 1rem; /* 顶部padding保持0.5rem，hero向上移动 */
+  }
+
+  .about-container > section {
+    margin-bottom: 2.5rem;
+  }
+
+  .about-intro,
+  .achievements-section,
+  .philosophy-section {
+    padding: 2.5rem 1.5rem;
+    border-radius: 15px;
   }
   
-  .hero-content {
+  /* 小屏幕保持纵向布局 */
+  .about-intro .intro-wrapper {
     grid-template-columns: 1fr;
     gap: 2rem;
-    text-align: center;
+    justify-items: center;
   }
-  
-  .profile-image img {
+
+  .about-intro .intro-avatar {
     width: 200px;
     height: 200px;
   }
   
-  .hero-text h1 {
-    font-size: 2rem;
+  .about-intro .intro-avatar img {
+    width: 200px;
+    height: 200px;
   }
   
-  .contact-info {
+  .about-intro .intro-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .about-intro .intro-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .about-intro .intro-description {
+    font-size: 1rem;
+  }
+  
+  .about-intro .intro-contact {
     flex-direction: column;
     gap: 1rem;
+    align-items: center;
   }
   
-  .skills-grid {
-    grid-template-columns: 1fr;
+  .achievements-section .section-title,
+  .philosophy-section .section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
   }
   
-  .timeline::before {
+  .achievements-section .timeline {
+    padding: 1rem 0;
+  }
+
+  .achievements-section .timeline::before {
     left: 30px;
   }
   
-  .timeline-item {
+  .achievements-section .timeline-item {
     flex-direction: column;
     align-items: flex-start;
     padding-left: 60px;
+    margin-bottom: 2.5rem;
   }
   
-  .timeline-marker {
+  .achievements-section .timeline-marker {
     left: 30px;
     transform: none;
+    width: 40px;
+    height: 40px;
+  }
+
+  .achievements-section .timeline-marker svg {
+    width: 16px;
+    height: 16px;
   }
   
-  .timeline-content {
+  .achievements-section .timeline-content {
     width: 100%;
     margin: 0;
-  }
-  
-  .section-title {
-    font-size: 2rem;
+    padding: 1.5rem;
   }
   
   .philosophy-content blockquote {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     padding: 1.5rem;
+    line-height: 1.7;
   }
   
   .philosophy-points {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .point {
+    padding: 1.5rem;
   }
 }

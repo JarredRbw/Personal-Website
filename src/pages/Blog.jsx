@@ -1,12 +1,25 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Calendar, Clock, Tag, Search, Filter } from 'lucide-react'
+import { useLocation } from 'react-router-dom'
 import './Blog.css'
 
 const Blog = () => {
+  const location = useLocation()
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedTag, setSelectedTag] = useState('全部')
   const [sortBy, setSortBy] = useState('最新')
+
+  // 当跳转到博客页面时，滚动到顶部
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+    if (location.hash) {
+      window.history.replaceState(null, '', location.pathname)
+    }
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 50)
+    return () => clearTimeout(timer)
+  }, [location.pathname])
 
   // 模拟博客文章数据
   const blogPosts = [
@@ -95,7 +108,8 @@ const Blog = () => {
   // 过滤和排序文章
   const filteredPosts = blogPosts
     .filter(post => {
-      const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      const matchesSearch = searchTerm === '' || 
+                          post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           post.excerpt.toLowerCase().includes(searchTerm.toLowerCase())
       const matchesTag = selectedTag === '全部' || post.tags.includes(selectedTag)
       return matchesSearch && matchesTag
@@ -136,60 +150,17 @@ const Blog = () => {
   return (
     <div className="page-container">
       <div className="blog-container">
+        {/* 简洁的标题 */}
         <motion.div 
           className="blog-header"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1>博客文章</h1>
-          <p>分享摄影心得、技巧和生活感悟</p>
+          <h1>Blog</h1>
         </motion.div>
 
-        {/* 搜索和筛选 */}
-        <motion.div 
-          className="blog-filters"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <div className="search-box">
-            <Search size={20} />
-            <input
-              type="text"
-              placeholder="搜索文章..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-          
-          <div className="filter-controls">
-            <div className="tag-filter">
-              <Filter size={16} />
-              <select 
-                value={selectedTag} 
-                onChange={(e) => setSelectedTag(e.target.value)}
-              >
-                {allTags.map(tag => (
-                  <option key={tag} value={tag}>{tag}</option>
-                ))}
-              </select>
-            </div>
-            
-            <div className="sort-filter">
-              <select 
-                value={sortBy} 
-                onChange={(e) => setSortBy(e.target.value)}
-              >
-                <option value="最新">最新</option>
-                <option value="最热">最热</option>
-                <option value="最多阅读">最多阅读</option>
-              </select>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* 文章列表 */}
+        {/* 文章列表 - 简洁的单栏布局 */}
         <motion.div 
           className="blog-posts"
           variants={containerVariants}
@@ -203,58 +174,27 @@ const Blog = () => {
                 className="blog-post"
                 variants={itemVariants}
                 layout
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
               >
-                <div className="post-image">
-                  <img src={post.image} alt={post.title} />
-                  <div className="post-overlay">
-                    <div className="post-stats">
-                      <span><Clock size={14} /> {post.readTime}</span>
-                      <span>❤️ {post.likes}</span>
-                      <span>👁️ {post.views}</span>
-                    </div>
-                  </div>
+                <div className="post-header">
+                  <span className="post-date">{post.date}</span>
+                  <h2 className="post-title">
+                    <a href="#" className="post-link">{post.title}</a>
+                  </h2>
                 </div>
                 
-                <div className="post-content">
-                  <div className="post-meta">
-                    <span className="post-date">
-                      <Calendar size={14} />
-                      {post.date}
-                    </span>
-                    <span className="post-author">by {post.author}</span>
-                  </div>
-                  
-                  <h2 className="post-title">{post.title}</h2>
-                  <p className="post-excerpt">{post.excerpt}</p>
-                  
+                <p className="post-excerpt">{post.excerpt}</p>
+                
+                <div className="post-footer">
                   <div className="post-tags">
                     {post.tags.map((tag, index) => (
-                      <span key={index} className="tag">
-                        <Tag size={12} />
-                        {tag}
-                      </span>
+                      <span key={index} className="tag">{tag}</span>
                     ))}
                   </div>
-                  
-                  <button className="read-more-btn">阅读全文 →</button>
+                  <span className="read-time">{post.readTime}</span>
                 </div>
               </motion.article>
             ))}
           </AnimatePresence>
-        </motion.div>
-
-        {/* 分页 */}
-        <motion.div 
-          className="pagination"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-        >
-          <button className="page-btn">上一页</button>
-          <span className="page-info">第 1 页，共 1 页</span>
-          <button className="page-btn">下一页</button>
         </motion.div>
       </div>
     </div>

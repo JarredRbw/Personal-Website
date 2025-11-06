@@ -1,10 +1,30 @@
 import { motion } from 'framer-motion'
 import { ArrowDown, Camera, BookOpen, User } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import HeroCarousel from '../components/HeroCarousel'
 import './Home.css'
 
 const Home = () => {
+  const location = useLocation()
+
+  // 当跳转到首页时，滚动到顶部
+  useEffect(() => {
+    // 立即滚动到顶部
+    window.scrollTo({ top: 0, behavior: 'instant' })
+    
+    // 如果URL中有锚点，清除它
+    if (location.hash) {
+      window.history.replaceState(null, '', location.pathname)
+    }
+    
+    // 延迟一下确保页面已渲染，然后平滑滚动到顶部
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 50)
+    
+    return () => clearTimeout(timer)
+  }, [location.pathname])
   // 轮播图片配置
   const carouselImages = [
     {
@@ -121,7 +141,7 @@ const Home = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            探索我的创作
+            Explore My World
           </motion.h2>
           
           <div className="features-grid">
@@ -145,7 +165,7 @@ const Home = () => {
                 <h3>{feature.title}</h3>
                 <p>{feature.description}</p>
                 <Link to={feature.link} className="feature-link">
-                  了解更多 →
+                  Learn More →
                 </Link>
               </motion.div>
             ))}
@@ -169,7 +189,7 @@ const Home = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            最新作品
+            Latest Works
           </motion.h2>
           
           <div className="work-preview">
@@ -184,8 +204,8 @@ const Home = () => {
                 </div>
               </div>
               <div className="preview-content">
-                <h3>城市夜景</h3>
-                <p>捕捉城市夜晚的美丽与宁静</p>
+                <h3>City Night</h3>
+                <p>Capture the beauty and tranquility of the city at night</p>
               </div>
             </motion.div>
             
@@ -200,8 +220,8 @@ const Home = () => {
                 </div>
               </div>
               <div className="preview-content">
-                <h3>摄影心得</h3>
-                <p>分享摄影技巧和创作感悟</p>
+                <h3>Photography Tips</h3>
+                <p>Share photography tips and creative insights</p>
               </div>
             </motion.div>
           </div>
