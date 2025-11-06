@@ -4,7 +4,7 @@
 
 ## 🌐 在线预览
 
-- **GitHub**: [[https://github.com/JarredRbw/Personal-Website](https://github.com/JarredRbw/Personal-Website](https://psweb-theta.vercel.app/))
+- **GitHub**: [(https://psweb-theta.vercel.app/)]
 - **Vercel**: 部署后添加链接
 
 ## 📸 在线网站
