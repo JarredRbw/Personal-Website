@@ -27,15 +27,17 @@
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #333;
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: #1a1a1a;
   text-decoration: none;
   transition: color 0.3s ease;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .logo:hover {
-  color: #667eea;
+  color: #1a1a1a;
 }
 
 .nav-links {
@@ -46,15 +48,18 @@
 
 .nav-links a {
   text-decoration: none;
-  color: #333;
-  font-weight: 500;
+  color: #666;
+  font-weight: 400;
   position: relative;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-  color: #667eea;
+  color: #1a1a1a;
 }
 
 .nav-links a::after {
@@ -63,9 +68,10 @@
   bottom: -5px;
   left: 0;
   width: 0;
-  height: 2px;
-  background: #667eea;
-  transition: width 0.3s ease;
+  height: 1px;
+  background: #1a1a1a;
+  transition: width 0.2s ease;
+  border-radius: 0;
 }
 
 .nav-links a:hover::after,
@@ -101,8 +107,8 @@
 
 .mobile-menu a:hover,
 .mobile-menu a.active {
-  background: #f8f9ff;
-  color: #667eea;
+  background: #fafafa;
+  color: #1a1a1a;
 }
 
 /* 响应式设计 */

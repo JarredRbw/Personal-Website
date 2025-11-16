@@ -204,20 +204,22 @@ body {
   display: inline-block;
   padding: 1rem 2rem;
   background: rgba(255, 255, 255, 0.2);
-  border: 2px solid white;
+  border: 1px solid white;
   color: white;
   text-decoration: none;
-  border-radius: 50px;
-  font-weight: 500;
+  border-radius: 2px;
+  font-weight: 400;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
 }
 
 .cta-button:hover {
   background: white;
-  color: #667eea;
+  color: #1a1a1a;
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* 摄影作品页面 */
@@ -232,16 +234,17 @@ body {
 
 .photo-card {
   position: relative;
-  border-radius: 15px;
+  border-radius: 3px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e5e5e5;
+  box-shadow: none;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .photo-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border-color: #1a1a1a;
+  transform: translateY(-2px);
 }
 
 .photo-card img {
@@ -289,16 +292,17 @@ body {
 
 .blog-post {
   background: white;
-  border-radius: 15px;
+  border-radius: 3px;
   padding: 2rem;
   margin-bottom: 2rem;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e5e5e5;
+  box-shadow: none;
+  transition: all 0.3s ease;
 }
 
 .blog-post:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  border-color: #1a1a1a;
+  transform: translateY(-2px);
 }
 
 .blog-post h2 {

@@ -70,13 +70,16 @@
   display: inline-block;
   padding: 1rem 2rem;
   background: rgba(255, 255, 255, 0.2);
-  border: 2px solid white;
+  border: 1px solid white;
   color: white;
   text-decoration: none;
-  border-radius: 50px;
-  font-weight: 500;
+  border-radius: 2px;
+  font-weight: 400;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
 }
 
 .cta-button:hover {
@@ -109,11 +112,14 @@
 }
 
 .section-title {
-  text-align: center;
-  font-size: 3rem;
+  text-align: left;
+  font-size: 2.5rem;
   font-weight: 300;
   margin-bottom: 4rem;
-  color: #333;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .features-grid {
@@ -125,15 +131,17 @@
 .feature-card {
   background: white;
   padding: 3rem 2rem;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  text-align: left;
+  border: 1px solid #e5e5e5;
+  box-shadow: none;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .feature-card:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-color: #1a1a1a;
+  background: #fafafa;
 }
 
 .feature-icon {
@@ -177,21 +185,24 @@
 }
 
 .preview-item {
-  background: #f8f9ff;
-  border-radius: 20px;
+  background: white;
+  border-radius: 3px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e5e5;
+  box-shadow: none;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .preview-item:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-color: #1a1a1a;
+  background: #fafafa;
 }
 
 .preview-image {
   height: 250px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #fafafa;
+  border-bottom: 1px solid #e5e5e5;
   display: flex;
   align-items: center;
   justify-content: center;

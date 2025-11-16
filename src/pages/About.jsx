@@ -170,14 +170,24 @@ const About = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, margin: "-50px" }}
                 transition={{ 
-                  duration: 0.6, 
-                  delay: index * 0.15,
+                  duration: 0.5, 
+                  delay: index * 0.1,
                   ease: "easeOut"
                 }}
               >
-                <div className="timeline-marker">
+                <motion.div 
+                  className="timeline-marker"
+                  initial={{ opacity: 0, scale: 0, x: "-50%" }}
+                  whileInView={{ opacity: 1, scale: 1, x: "-50%" }}
+                  viewport={{ once: false, margin: "-50px" }}
+                  transition={{ 
+                    duration: 0.4, 
+                    delay: index * 0.1 + 0.2,
+                    ease: "easeOut"
+                  }}
+                >
                   <Camera size={20} />
-                </div>
+                </motion.div>
                 <div className="timeline-content">
                   <div className="timeline-year">{achievement.year}</div>
                   <h3>{achievement.title}</h3>
@@ -238,3 +248,4 @@ const About = () => {
 }
 
 export default About
+
