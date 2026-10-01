@@ -1,0 +1,44 @@
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  padding: 2.5rem 0;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+}
+
+.footer-note {
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--text);
+}
+
+.footer-copy {
+  width: 100%;
+  color: var(--text-subtle);
+  font-size: 0.8rem;
+}

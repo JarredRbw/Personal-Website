@@ -23,7 +23,8 @@ export default defineConfig([
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      // motion 只以 <motion.div> 形式在 JSX 中使用，核心规则识别不到
+      'no-unused-vars': ['error', { varsIgnorePattern: '^([A-Z_]|motion$)' }],
     },
   },
 ])

@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLocation } from 'react-router-dom'
 import './Blog.css'
 
 const Blog = () => {
   const location = useLocation()
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedTag, setSelectedTag] = useState('全部')
-  const [sortBy, setSortBy] = useState('最新')
+  // 搜索、标签、排序的界面还没做，先用固定值
+  const searchTerm = ''
+  const selectedTag = '全部'
+  const sortBy = '最新'
 
   // 当跳转到博客页面时，滚动到顶部
   useEffect(() => {
@@ -103,7 +104,6 @@ const Blog = () => {
     }
   ]
 
-  const allTags = ['全部', '摄影技巧', '夜景摄影', '教程', '器材推荐', '摄影装备', '经验分享', '旅行摄影', '人文摄影', '故事', '后期处理', 'Photoshop', 'Lightroom', '人像摄影', '构图技巧', '光线', '成长经历', '摄影心得', '感悟']
 
   // 过滤和排序文章
   const filteredPosts = blogPosts

@@ -1,62 +1,46 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+import LanguageProvider from './i18n/LanguageProvider'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import Home from './pages/Home'
+import Projects from './pages/Projects'
 import Photography from './pages/Photography'
-import Blog from './pages/Blog'
 import About from './pages/About'
 import './App.css'
 
-function App() {
-  const [loading, setLoading] = useState(true)
+// 切换路由时回到页面顶部
+const ScrollToTop = () => {
+  const { pathname } = useLocation()
 
   useEffect(() => {
-    // 模拟加载时间，展示加载动画
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 2000)
-    return () => clearTimeout(timer)
-  }, [])
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [pathname])
 
-  if (loading) {
-    return (
-      <motion.div 
-        className="loading-screen"
-        initial={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <motion.div 
-          className="loading-spinner"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          Welcome to My Portfolio
-        </motion.h1>
-      </motion.div>
-    )
-  }
+  return null
+}
 
+function App() {
   return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <AnimatePresence mode="wait">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/photography" element={<Photography />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </AnimatePresence>
-      </div>
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <ScrollToTop />
+        <div className="App">
+          <Navbar />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/photography" element={<Photography />} />
+              <Route path="/about" element={<About />} />
+              {/* 博客暂时隐藏，内容准备好后恢复：<Route path="/blog" element={<Blog />} /> */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </LanguageProvider>
   )
 }
 

@@ -2,12 +2,21 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import { useLanguage } from '../i18n/language'
 import './Navbar.css'
+
+const navItems = [
+  { path: '/', label: { en: 'Home', zh: '首页' } },
+  { path: '/projects', label: { en: 'Projects', zh: '项目' } },
+  { path: '/photography', label: { en: 'Photography', zh: '摄影' } },
+  { path: '/about', label: { en: 'About', zh: '关于我' } }
+]
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const location = useLocation()
+  const { lang, setLang } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,15 +27,21 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const navItems = [
-    { path: '/', label: '首页' },
-    { path: '/photography', label: '摄影作品' },
-    { path: '/blog', label: '博客' },
-    { path: '/about', label: '关于我' }
-  ]
+  const toggleLang = () => setLang(lang === 'en' ? 'zh' : 'en')
+
+  const langButton = (
+    <button
+      type="button"
+      className="lang-toggle"
+      onClick={toggleLang}
+      aria-label={lang === 'en' ? '切换到中文' : 'Switch to English'}
+    >
+      {lang === 'en' ? '中文' : 'EN'}
+    </button>
+  )
 
   return (
-    <motion.nav 
+    <motion.nav
       className={`navbar ${isScrolled ? 'scrolled' : ''}`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -36,7 +51,7 @@ const Navbar = () => {
         <Link to="/" className="logo">
           Jarred Ren
         </Link>
-        
+
         <div className="nav-links">
           {navItems.map((item) => (
             <Link
@@ -44,23 +59,30 @@ const Navbar = () => {
               to={item.path}
               className={location.pathname === item.path ? 'active' : ''}
             >
-              {item.label}
+              {item.label[lang]}
             </Link>
           ))}
+          {langButton}
         </div>
 
-        <button 
-          className="mobile-menu-btn"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="nav-mobile-actions">
+          {langButton}
+          <button
+            type="button"
+            className="mobile-menu-btn"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Menu"
+            aria-expanded={isMobileMenuOpen}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
-      <motion.div 
+      <motion.div
         className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}
         initial={{ opacity: 0, height: 0 }}
-        animate={{ 
+        animate={{
           opacity: isMobileMenuOpen ? 1 : 0,
           height: isMobileMenuOpen ? 'auto' : 0
         }}
@@ -72,8 +94,9 @@ const Navbar = () => {
             to={item.path}
             className={location.pathname === item.path ? 'active' : ''}
             onClick={() => setIsMobileMenuOpen(false)}
+            tabIndex={isMobileMenuOpen ? 0 : -1}
           >
-            {item.label}
+            {item.label[lang]}
           </Link>
         ))}
       </motion.div>

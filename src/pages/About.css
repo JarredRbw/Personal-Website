@@ -1,495 +1,217 @@
-/* ============================================
-   关于页面样式
-   ============================================ */
+/* 关于页面样式 */
 
-/* 页面容器 - 控制整个About页面的位置和间距 */
-.about-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 2rem 4rem 2rem;
-  background: #fafafa;
+.container.about-page {
+  padding-top: 3rem;
+  padding-bottom: 4rem;
 }
 
-/* Section之间的间距 */
-.about-container > section {
-  margin-bottom: 3rem;
-}
-
-/* ============================================
-   个人介绍区域 - 完全重构，使用新类名避免冲突
-   ============================================ */
-
-/* 介绍卡片容器 */
-.about-intro {
-  margin-bottom: 3rem;
-  background: white;
-  padding: 3rem;
+.about-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 4px;
-  border: 1px solid #e5e5e5;
-  box-shadow: none;
+  padding: 3rem;
+  margin-bottom: 2rem;
 }
 
-/* 内容包装器 - 使用grid布局，更可靠 */
-.about-intro .intro-wrapper {
+/* 个人介绍 */
+.about-intro {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 280px 1fr;
   gap: 3rem;
   align-items: center;
-  max-width: 1000px;
-  margin: 0 auto;
 }
 
-/* 头像区域 */
-.about-intro .intro-avatar {
-  width: 300px;
-  height: 300px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.about-intro .intro-avatar img {
-  width: 300px;
-  height: 300px;
+.intro-avatar img {
+  width: 280px;
+  height: 280px;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: none;
-  border: 1px solid #e5e5e5;
+  border: 1px solid var(--border);
   display: block;
 }
 
-/* 文字区域 */
-.about-intro .intro-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.about-intro .intro-text h1 {
-  font-size: 2.8rem;
+.intro-text h1 {
+  font-size: 2.6rem;
   font-weight: 400;
-  margin: 0 0 1rem 0;
-  color: #333;
+  color: var(--text);
   line-height: 1.2;
-}
-
-.about-intro .intro-subtitle {
-  font-size: 1.25rem;
-  color: #667eea;
-  margin: 0 0 1.5rem 0;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-}
-
-.about-intro .intro-description {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: #555;
-  margin: 0 0 2rem 0;
-  max-width: 600px;
-}
-
-.about-intro .intro-contact {
-  display: flex;
-  gap: 2rem;
-  margin: 0 0 2rem 0;
-}
-
-.about-intro .intro-contact-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #666;
-  font-weight: 500;
-}
-
-.about-intro .intro-social {
-  display: flex;
-  gap: 1rem;
-  margin: 0;
-}
-
-.about-intro .intro-social-link {
-  width: 50px;
-  height: 50px;
-  border-radius: 2px;
-  background: transparent;
-  border: 1px solid #d0d0d0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #666;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.about-intro .intro-social-link:hover {
-  background: #1a1a1a;
-  border-color: #1a1a1a;
-  color: white;
-  transform: translateY(-2px);
-}
-
-/* Section标题样式 - 用于成就和理念部分 */
-.section-title {
-  text-align: left;
-  font-size: 2.5rem;
-  font-weight: 300;
-  margin-bottom: 4rem;
-  color: #1a1a1a;
-  position: relative;
-  padding-bottom: 2rem;
-  letter-spacing: -0.02em;
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 60px;
-  height: 1px;
-  background: #1a1a1a;
-  border-radius: 0;
-}
-
-/* 成就时间线 */
-.achievements-section {
-  margin-bottom: 3rem;
-  background: white;
-  padding: 3.5rem 3rem;
-  border-radius: 4px;
-  border: 1px solid #e5e5e5;
-  box-shadow: none;
-  position: relative;
-  overflow: visible; /* 确保timeline可见 */
-  /* 移除!important，让framer-motion控制动画 */
-}
-
-.achievements-section .timeline {
-  position: relative;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem 0;
-  display: block;
-}
-
-.achievements-section .timeline::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, #667eea, #764ba2);
-  transform: translateX(-50%);
-  z-index: 1;
-  opacity: 0;
-  animation: timelineLineFadeIn 0.6s ease-out 0s forwards;
-}
-
-@keyframes timelineLineFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.achievements-section .timeline-item {
-  position: relative;
-  margin-bottom: 3rem;
-  display: flex;
-  align-items: center;
-  /* 让framer-motion控制opacity，但确保元素结构可见 */
-}
-
-.achievements-section .timeline-item:nth-child(odd) {
-  flex-direction: row;
-}
-
-.achievements-section .timeline-item:nth-child(even) {
-  flex-direction: row-reverse;
-}
-
-.achievements-section .timeline-marker {
-  position: absolute;
-  left: 50%;
-  width: 50px;
-  height: 50px;
-  background: white;
-  border: 2px solid #1a1a1a;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #1a1a1a;
-  z-index: 2;
-  box-shadow: none;
-  transform: translateX(-50%);
-  transform-origin: center center;
-}
-
-.achievements-section .timeline-content {
-  background: #fafafa;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: none;
-  border: 1px solid #e5e5e5;
-  width: 45%;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.achievements-section .timeline-content:hover {
-  background: #f5f5f5;
-  border-color: #1a1a1a;
-  transform: translateY(-2px);
-}
-
-.achievements-section .timeline-item:nth-child(odd) .timeline-content {
-  margin-right: auto;
-  margin-left: 0;
-}
-
-.achievements-section .timeline-item:nth-child(even) .timeline-content {
-  margin-left: auto;
-  margin-right: 0;
-}
-
-.achievements-section .timeline-year {
-  color: #667eea;
-  font-weight: 600;
-  font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
 
-.achievements-section .timeline-content h3 {
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  color: #333;
-}
-
-.achievements-section .timeline-content p {
-  color: #666;
-  line-height: 1.6;
-}
-
-/* 个人理念 */
-.philosophy-section {
-  text-align: left;
-  margin-bottom: 0;
-  background: white;
-  padding: 3.5rem 3rem;
-  border-radius: 4px;
-  border: 1px solid #e5e5e5;
-  box-shadow: none;
-}
-
-.philosophy-content {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.philosophy-content blockquote {
-  font-size: 1.3rem;
-  line-height: 1.8;
-  color: #333;
+.intro-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
   font-style: italic;
-  margin-bottom: 3rem;
-  padding: 2rem;
-  background: #fafafa;
-  border-radius: 3px;
-  border-left: 2px solid #1a1a1a;
+  margin-bottom: 1.5rem;
+}
+
+.intro-description {
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: #444;
+  max-width: 620px;
+  margin-bottom: 1rem;
+}
+
+.intro-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.intro-contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+a.intro-contact-item:hover {
+  color: var(--text);
+}
+
+/* 技能 */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 3rem;
+}
+
+.skill-group h3 {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-bottom: 0.75rem;
+}
+
+/* 经历 */
+.experience-list {
+  list-style: none;
+  border-left: 1px solid var(--border-strong);
+  margin-left: 0.4rem;
+}
+
+.experience-item {
+  position: relative;
+  padding: 0 0 2rem 2rem;
+}
+
+.experience-item:last-child {
+  padding-bottom: 0;
+}
+
+.experience-item::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 0.55rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.experience-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  margin-bottom: 0.4rem;
+}
+
+.experience-head h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.experience-head span {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.experience-item p {
+  color: #444;
+  line-height: 1.7;
+  max-width: 720px;
+}
+
+/* 理念 */
+.philosophy-quote {
+  font-family: 'Times New Roman', 'Georgia', 'Times', serif;
+  font-size: 1.75rem;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 2.5rem;
+}
+
+.philosophy-quote cite {
+  display: block;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-style: normal;
+  color: var(--text-subtle);
+  margin-top: 0.5rem;
 }
 
 .philosophy-points {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
-.point {
-  text-align: left;
-  padding: 2rem;
-  background: #fafafa;
-  border-radius: 3px;
-  border: 1px solid #e5e5e5;
-  transition: all 0.3s ease;
-}
-
-.point:hover {
-  background: #f5f5f5;
-  border-color: #1a1a1a;
-  transform: translateY(-2px);
-}
-
 .point h4 {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  color: #333;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 0.5rem;
 }
 
 .point p {
-  color: #666;
-  line-height: 1.6;
+  color: var(--text-muted);
+  line-height: 1.7;
 }
 
-/* ============================================
-   响应式设计
-   ============================================ */
-
-/* 中等屏幕 (平板) */
-@media (max-width: 968px) {
-  /* 调整容器padding，保持顶部间距较小 */
-  .about-container {
-    padding: 0.5rem 1.5rem 3rem 1.5rem; /* 顶部padding保持0.5rem */
-  }
-
-  .about-intro,
-  .achievements-section,
-  .philosophy-section {
-    padding: 3rem 2rem;
-  }
-
-  /* 中等屏幕改为纵向布局 */
-  .about-intro .intro-wrapper {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    text-align: center;
-    justify-items: center;
-  }
-
-  .about-intro .intro-avatar {
-    width: 250px;
-    height: 250px;
-  }
-
-  .about-intro .intro-avatar img {
-    width: 250px;
-    height: 250px;
-  }
-
-  .about-intro .intro-text h1 {
-    font-size: 2.2rem;
-  }
-
-  .about-intro .intro-description {
-    max-width: 100%;
-  }
-
-  .about-intro .intro-contact {
-    justify-content: center;
-  }
-}
-
-/* 小屏幕 (手机) */
-@media (max-width: 768px) {
-  /* 移动端调整容器padding */
-  .about-container {
-    padding: 0.5rem 1rem 2rem 1rem; /* 顶部padding保持0.5rem，hero向上移动 */
-  }
-
-  .about-container > section {
-    margin-bottom: 2.5rem;
-  }
-
-  .about-intro,
-  .achievements-section,
-  .philosophy-section {
-    padding: 2.5rem 1.5rem;
-    border-radius: 4px;
-  }
-  
-  /* 小屏幕保持纵向布局 */
-  .about-intro .intro-wrapper {
+@media (max-width: 900px) {
+  .about-intro {
     grid-template-columns: 1fr;
     gap: 2rem;
-    justify-items: center;
+    text-align: left;
   }
 
-  .about-intro .intro-avatar {
-    width: 200px;
-    height: 200px;
-  }
-  
-  .about-intro .intro-avatar img {
-    width: 200px;
-    height: 200px;
-  }
-  
-  .about-intro .intro-text h1 {
-    font-size: 1.8rem;
+  .intro-avatar img {
+    width: 180px;
+    height: 180px;
   }
 
-  .about-intro .intro-subtitle {
-    font-size: 1.1rem;
-  }
-
-  .about-intro .intro-description {
-    font-size: 1rem;
-  }
-  
-  .about-intro .intro-contact {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-  }
-  
-  .achievements-section .section-title,
-  .philosophy-section .section-title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-  }
-  
-  .achievements-section .timeline {
-    padding: 1rem 0;
-  }
-
-  .achievements-section .timeline::before {
-    left: 30px;
-  }
-  
-  .achievements-section .timeline-item {
-    flex-direction: column;
-    align-items: flex-start;
-    padding-left: 60px;
-    margin-bottom: 2.5rem;
-  }
-  
-  .achievements-section .timeline-marker {
-    left: 30px;
-    transform: none;
-    width: 40px;
-    height: 40px;
-  }
-
-  .achievements-section .timeline-marker svg {
-    width: 16px;
-    height: 16px;
-  }
-  
-  .achievements-section .timeline-content {
-    width: 100%;
-    margin: 0;
-    padding: 1.5rem;
-  }
-  
-  .philosophy-content blockquote {
-    font-size: 1.05rem;
-    padding: 1.5rem;
-    line-height: 1.7;
-  }
-  
+  .skills-grid,
   .philosophy-points {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container.about-page {
+    padding-top: 1.5rem;
   }
 
-  .point {
-    padding: 1.5rem;
+  .about-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .intro-text h1 {
+    font-size: 2rem;
+  }
+
+  .philosophy-quote {
+    font-size: 1.4rem;
   }
 }
