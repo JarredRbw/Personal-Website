@@ -1,237 +1,146 @@
-import { useState, useEffect } from 'react'
+import { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X } from 'lucide-react'
+import { FileText } from 'lucide-react'
+import Lightbox from '../components/Lightbox'
+import { photos, photoCategories } from '../data/photos'
+import { contact } from '../data/profile'
 import { useLanguage } from '../i18n/language'
 import './Photography.css'
 
-// 摄影作品系列数据 - 根据实际文件夹结构组织
-const photoSeries = [
-  {
-    id: 1,
-    title: { en: 'City', zh: '城市系列' },
-    category: 'city',
-    coverImage: '/images/Assets/City/370f61d956d8e9e5abc2e1dbb8824179.JPG',
-    images: [
-      '/images/Assets/City/370f61d956d8e9e5abc2e1dbb8824179.JPG',
-      '/images/Assets/City/684416b7f4ccbccff372a9a495ea41fe.JPG'
-    ]
+const copy = {
+  en: {
+    title: 'Photography',
+    intro: 'Street scenes, landscapes, architecture and live events. Click any photo to view it full screen.',
+    all: 'All',
+    resume: 'Photography resume',
+    close: 'Close',
+    prev: 'Previous photo',
+    next: 'Next photo'
   },
-  {
-    id: 2,
-    title: { en: 'Nature', zh: '自然系列' },
-    category: 'nature',
-    coverImage: '/images/Assets/Nature/1-1.jpg',
-    images: [
-      '/images/Assets/Nature/1-1.jpg',
-      '/images/Assets/Nature/2-1.jpg',
-      '/images/Assets/Nature/4-1.jpg'
-    ]
-  },
-  {
-    id: 3,
-    title: { en: 'Hiking', zh: '徒步系列' },
-    category: 'hiking',
-    coverImage: '/images/Assets/Hiking/_DSC8637.JPG',
-    images: [
-      '/images/Assets/Hiking/_DSC8637.JPG',
-      '/images/Assets/Hiking/_DSC8777.JPG',
-      '/images/Assets/Hiking/_DSC8874.JPG'
-    ]
-  },
-  {
-    id: 4,
-    title: { en: 'Museum', zh: '博物馆系列' },
-    category: 'culture',
-    coverImage: '/images/Assets/Human/Museum/_DSC9794.JPG',
-    images: [
-      '/images/Assets/Human/Museum/_DSC9794.JPG',
-      '/images/Assets/Human/Museum/_DSC9802.JPG',
-      '/images/Assets/Human/Museum/_DSC9833.JPG',
-      '/images/Assets/Human/Museum/_DSC9837.JPG',
-      '/images/Assets/Human/Museum/_DSC9839.JPG',
-      '/images/Assets/Human/Museum/_DSC9844.JPG',
-      '/images/Assets/Human/Museum/_DSC9858.JPG',
-      '/images/Assets/Human/Museum/_DSC9861.JPG',
-      '/images/Assets/Human/Museum/_DSC9897.JPG',
-      '/images/Assets/Human/Museum/_DSC9924.JPG'
-    ]
-  },
-  {
-    id: 5,
-    title: { en: 'Ancient Architecture', zh: '古建筑系列' },
-    category: 'culture',
-    coverImage: '/images/Assets/Human/Ancient Architecture/3-1.jpg',
-    images: [
-      '/images/Assets/Human/Ancient Architecture/3-1.jpg'
-    ]
-  }
-]
-
-const categories = [
-  { id: 'all', label: { en: 'All', zh: '全部' } },
-  { id: 'city', label: { en: 'City', zh: '城市' } },
-  { id: 'nature', label: { en: 'Nature', zh: '自然' } },
-  { id: 'hiking', label: { en: 'Hiking', zh: '徒步' } },
-  { id: 'culture', label: { en: 'Culture', zh: '人文' } }
-]
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
+  zh: {
+    title: '摄影',
+    intro: '街拍、风光、建筑和现场活动。点击任意照片可全屏浏览。',
+    all: '全部',
+    resume: '摄影方向简历',
+    close: '关闭',
+    prev: '上一张',
+    next: '下一张'
   }
 }
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut"
-    }
-  }
-}
+const PhotoGrid = ({ items, onOpen }) => (
+  <div className="masonry">
+    {items.map((photo) => (
+      // 不用滚动进入视口的淡入动画：Safari 在多栏布局里检测不准，照片会一直透明
+      <button
+        key={photo.src}
+        type="button"
+        className="masonry-item"
+        onClick={() => onOpen(photo)}
+      >
+        <img
+          src={photo.thumb}
+          alt={photo.alt}
+          width={photo.w}
+          height={photo.h}
+          loading="lazy"
+          decoding="async"
+        />
+      </button>
+    ))}
+  </div>
+)
 
 const Photography = () => {
   const { lang } = useLanguage()
-  const [selectedSeries, setSelectedSeries] = useState(null)
+  const c = copy[lang]
   const [selectedCategory, setSelectedCategory] = useState('all')
+  const [openIndex, setOpenIndex] = useState(null)
 
-  const filteredSeries = selectedCategory === 'all'
-    ? photoSeries
-    : photoSeries.filter(series => series.category === selectedCategory)
+  const categoryLabel = (id) => photoCategories.find((cat) => cat.id === id)?.label[lang] ?? id
+  const inCategory = (id) => photos.filter((p) => p.category === id)
 
-  // 打开详情时按 Esc 关闭，并锁定背景滚动
-  useEffect(() => {
-    if (!selectedSeries) return
-    const onKeyDown = (e) => {
-      if (e.key === 'Escape') setSelectedSeries(null)
-    }
-    document.addEventListener('keydown', onKeyDown)
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.removeEventListener('keydown', onKeyDown)
-      document.body.style.overflow = ''
-    }
-  }, [selectedSeries])
+  // 看图时按当前筛选结果的顺序前后翻
+  const visiblePhotos = useMemo(
+    () => (selectedCategory === 'all' ? photos : photos.filter((p) => p.category === selectedCategory)),
+    [selectedCategory]
+  )
 
-  const photoCount = (n) => (lang === 'en' ? `${n} photo${n > 1 ? 's' : ''}` : `${n} 张`)
+  const openPhoto = (photo) => setOpenIndex(visiblePhotos.indexOf(photo))
+
+  const tabs = [{ id: 'all', label: { en: c.all, zh: c.all }, count: photos.length }].concat(
+    photoCategories.map((cat) => ({ ...cat, count: inCategory(cat.id).length }))
+  )
 
   return (
     <div className="page-container">
-      <div className="photography-container">
-        <motion.div
+      <div className="photography-page">
+        <motion.header
           className="photography-header"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1>{lang === 'en' ? 'Photography' : '摄影'}</h1>
-          <p>{lang === 'en' ? 'Selected works' : '精选作品'}</p>
-        </motion.div>
-
-        {/* 分类筛选 */}
-        <motion.div
-          className="category-filter"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              type="button"
-              className={`category-btn ${selectedCategory === category.id ? 'active' : ''}`}
-              onClick={() => setSelectedCategory(category.id)}
+          <div>
+            <h1>{c.title}</h1>
+            <p>{c.intro}</p>
+          </div>
+          {contact.photographyResumeUrl && (
+            <a
+              href={contact.photographyResumeUrl}
+              className="btn btn-secondary"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              {category.label[lang]}
+              <FileText size={16} />
+              {c.resume}
+            </a>
+          )}
+        </motion.header>
+
+        <nav className="category-tabs" aria-label={c.title}>
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              className={`category-tab ${selectedCategory === tab.id ? 'active' : ''}`}
+              onClick={() => setSelectedCategory(tab.id)}
+              aria-pressed={selectedCategory === tab.id}
+            >
+              {tab.label[lang]}
+              <span className="category-count">{tab.count}</span>
             </button>
           ))}
-        </motion.div>
+        </nav>
 
-        {/* 作品网格 */}
-        <motion.div
-          className="photography-grid"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          key={selectedCategory}
-        >
-          {filteredSeries.map((series) => (
-            <motion.button
-              key={series.id}
-              type="button"
-              className="photo-card"
-              variants={itemVariants}
-              onClick={() => setSelectedSeries(series)}
-            >
-              <div className="photo-image">
-                <img src={series.coverImage} alt={series.title[lang]} loading="lazy" />
+        {selectedCategory === 'all' ? (
+          photoCategories.map((cat) => (
+            <section key={cat.id} className="photo-section">
+              <div className="photo-section-head">
+                <h2>{cat.label[lang]}</h2>
+                <span className="photo-section-count">{inCategory(cat.id).length}</span>
               </div>
-              <div className="photo-title">
-                <h3>{series.title[lang]}</h3>
-                <span>{photoCount(series.images.length)}</span>
-              </div>
-            </motion.button>
-          ))}
-        </motion.div>
-
-        {/* 系列详情，展示系列所有图片 */}
-        <AnimatePresence>
-          {selectedSeries && (
-            <motion.div
-              className="photo-modal"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedSeries(null)}
-              role="dialog"
-              aria-modal="true"
-              aria-label={selectedSeries.title[lang]}
-            >
-              <motion.div
-                className="modal-content"
-                initial={{ scale: 0.95, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.95, opacity: 0 }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <button
-                  type="button"
-                  className="close-btn"
-                  onClick={() => setSelectedSeries(null)}
-                  aria-label={lang === 'en' ? 'Close' : '关闭'}
-                >
-                  <X size={24} />
-                </button>
-
-                <div className="modal-header">
-                  <h2>{selectedSeries.title[lang]}</h2>
-                </div>
-
-                <div className="series-gallery">
-                  {selectedSeries.images.map((imageUrl, index) => (
-                    <motion.div
-                      key={imageUrl}
-                      className="series-image-item"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <img src={imageUrl} alt={`${selectedSeries.title[lang]} ${index + 1}`} loading="lazy" />
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              <PhotoGrid items={inCategory(cat.id)} onOpen={openPhoto} />
+            </section>
+          ))
+        ) : (
+          <section className="photo-section" key={selectedCategory}>
+            <PhotoGrid items={visiblePhotos} onOpen={openPhoto} />
+          </section>
+        )}
       </div>
+
+      <AnimatePresence>
+        {openIndex !== null && (
+          <Lightbox
+            items={visiblePhotos}
+            index={openIndex}
+            onChange={setOpenIndex}
+            onClose={() => setOpenIndex(null)}
+            labels={{ close: c.close, prev: c.prev, next: c.next, category: categoryLabel }}
+          />
+        )}
+      </AnimatePresence>
     </div>
   )
 }

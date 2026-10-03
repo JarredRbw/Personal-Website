@@ -1,359 +1,171 @@
-/* 摄影作品页面样式 - 成熟专业风格 */
+/* 摄影页面：分类标签 + 瀑布流 */
 
-.photography-container {
-  max-width: 100%;
+.photography-page {
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 4rem 0.5rem 4rem 0.5rem;
-  background: #fafafa;
+  padding: 3.5rem 2rem 5rem;
 }
 
-/* 页面标题区域 - 简洁专业 */
 .photography-header {
-  text-align: left;
-  margin-bottom: 4rem;
-  padding: 0 2rem 2rem;
-  border-bottom: 1px solid #e5e5e5;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
 }
 
 .photography-header h1 {
   font-size: 2.5rem;
   font-weight: 300;
-  margin-bottom: 0.5rem;
-  color: #1a1a1a;
+  color: var(--text);
   letter-spacing: -0.02em;
   line-height: 1.2;
+  margin-bottom: 0.5rem;
 }
 
 .photography-header p {
-  font-size: 0.95rem;
-  color: #666;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  margin: 0;
+  color: var(--text-muted);
+  max-width: 560px;
 }
 
-/* 分类筛选 - 简洁的标签式设计 */
-.category-filter {
+/* 分类标签 */
+.category-tabs {
+  position: sticky;
+  top: var(--nav-height);
+  z-index: 10;
   display: flex;
-  justify-content: flex-start;
-  gap: 0.5rem;
-  margin-bottom: 4rem;
-  flex-wrap: wrap;
-  padding: 0 2rem 1.5rem;
-  border-bottom: 1px solid #e5e5e5;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  gap: 1.75rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 1rem 0;
+  margin-bottom: 1.5rem;
+  background: var(--background);
 }
 
-.category-btn {
-  padding: 0.5rem 1.25rem;
-  border: 1px solid #d0d0d0;
-  background: transparent;
-  color: #666;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-weight: 400;
-  font-size: 0.9rem;
-  letter-spacing: 0.02em;
+.category-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.category-tab {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.25rem 0;
+  background: none;
+  border: none;
+  border-bottom: 1px solid transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  font-size: 0.75rem;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.category-btn:hover {
-  border-color: #1a1a1a;
-  color: #1a1a1a;
-  background: #f5f5f5;
+.category-tab:hover {
+  color: var(--text);
 }
 
-.category-btn.active {
-  background: #1a1a1a;
-  border-color: #1a1a1a;
-  color: #fff;
+.category-tab.active {
+  color: var(--text);
+  border-bottom-color: var(--text);
 }
 
-/* 作品网格 - 参考 film-grab.com 风格 */
-.photography-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 0;
-  background: #fff;
-  width: 100%;
-  border-left: 0.5px solid #e5e5e5;
-  border-top: 0.5px solid #e5e5e5;
+.category-count {
+  font-size: 0.7rem;
+  color: var(--text-subtle);
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
 }
 
-.photo-card {
+/* 分区 */
+.photo-section {
+  margin-bottom: 4rem;
+}
+
+.photo-section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.photo-section-head h2 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.photo-section-count {
+  font-size: 0.85rem;
+  color: var(--text-subtle);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 瀑布流：保持每张照片原始比例 */
+.masonry {
+  column-count: 3;
+  column-gap: 12px;
+}
+
+.masonry-item {
   display: block;
   width: 100%;
+  margin: 0 0 12px;
   padding: 0;
   border: 0;
-  font: inherit;
-  text-align: left;
-  background: #fff;
+  background: #ececec;
+  cursor: zoom-in;
   overflow: hidden;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-  position: relative;
-  border-right: 0.5px solid #e5e5e5;
-  border-bottom: 0.5px solid #e5e5e5;
+  break-inside: avoid;
 }
 
-.photo-card:hover {
-  opacity: 0.9;
-  z-index: 10;
-}
-
-.photo-image {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  background: #f0f0f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-.photo-image img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
+.masonry-item img {
   display: block;
-  transition: transform 0.3s ease;
-}
-
-.photo-card:hover .photo-image img {
-  transform: scale(1.05);
-}
-
-.photo-title {
-  padding: 0.75rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
-}
-
-.photo-title h3 {
-  font-size: 0.85rem;
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: #1a1a1a;
-}
-
-.photo-title span {
-  font-size: 0.75rem;
-  color: #999;
-}
-
-/* 系列详情模态框 - 专业展示 */
-.photo-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.98);
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  z-index: 2000;
-  padding: 0;
-  overflow-y: auto;
-}
-
-.modal-content {
-  position: relative;
-  max-width: 1600px;
   width: 100%;
-  background: #000;
-  border-radius: 0;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  min-height: 100vh;
+  height: auto;
+  transition: transform 0.5s ease, opacity 0.3s ease;
 }
 
-.close-btn {
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
-  width: 44px;
-  height: 44px;
-  border-radius: 0;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(10px);
+.masonry-item:hover img {
+  transform: scale(1.03);
+  opacity: 0.92;
 }
 
-.close-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-/* 系列标题 */
-.modal-header {
-  padding: 3rem 2rem 2rem 2rem;
-  background: #000;
-  color: white;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  background: rgba(0, 0, 0, 0.95);
-  backdrop-filter: blur(10px);
-}
-
-.modal-header h2 {
-  font-size: 1.25rem;
-  margin: 0;
-  color: white;
-  font-weight: 300;
-  letter-spacing: 0.05em;
-  line-height: 1.4;
-  text-transform: uppercase;
-}
-
-/* 系列图片网格 - 专业展示 */
-.series-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 1px;
-  background: #000;
-  padding: 0;
-}
-
-.series-image-item {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  background: #1a1a1a;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-}
-
-.series-image-item:hover {
-  opacity: 0.95;
-  z-index: 1;
-}
-
-.series-image-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* 响应式设计 */
-@media (max-width: 1200px) {
-  .photography-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  }
-  
-  .series-gallery {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+@media (max-width: 1024px) {
+  .masonry {
+    column-count: 2;
   }
 }
 
 @media (max-width: 768px) {
-  .photography-header,
-  .category-filter {
-    padding-left: 0;
-    padding-right: 0;
+  .photography-page {
+    padding: 2rem 1rem 3rem;
   }
 
-  .photography-container {
-    padding: 4rem 1.5rem 3rem 1.5rem;
-  }
-  
-  .photography-header {
-    margin-bottom: 3rem;
-    padding-bottom: 1.5rem;
-  }
-  
   .photography-header h1 {
     font-size: 2rem;
   }
-  
-  .photography-header p {
-    font-size: 0.85rem;
-  }
-  
-  .category-filter {
-    gap: 0.5rem;
-    margin-bottom: 3rem;
-    padding-bottom: 1rem;
-  }
-  
-  .category-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.7rem;
-  }
-  
-  .photography-grid {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-  
-  .photo-card {
-    border-right: none;
-    border-bottom: 1px solid #e5e5e5;
-  }
-  
-  .modal-content {
-    min-height: 100vh;
-  }
-  
-  .modal-header {
-    padding: 2rem 1.5rem 1.5rem 1.5rem;
-  }
-  
-  .modal-header h2 {
-    font-size: 1rem;
-  }
-  
-  .series-gallery {
-    grid-template-columns: 1fr;
-    gap: 1px;
-  }
-  
-  .close-btn {
-    top: 1rem;
-    right: 1rem;
-    width: 40px;
-    height: 40px;
-  }
-}
 
-@media (max-width: 480px) {
-  .photography-container {
-    padding: 3rem 1rem 2rem 1rem;
+  .category-tabs {
+    gap: 1.25rem;
   }
-  
-  .photography-header h1 {
-    font-size: 1.75rem;
+
+  .masonry {
+    column-gap: 8px;
   }
-  
-  .category-filter {
-    gap: 0.4rem;
+
+  .masonry-item {
+    margin-bottom: 8px;
   }
-  
-  .category-btn {
-    padding: 0.45rem 0.9rem;
-    font-size: 0.65rem;
+
+  .photo-section {
+    margin-bottom: 3rem;
   }
 }

@@ -9,10 +9,10 @@ const groups = [
   {
     id: 'software',
     icon: <Code2 size={22} />,
-    title: { en: 'Software & Web', zh: '软件与 Web 开发' },
+    title: { en: 'Software, Web & AI', zh: '软件、Web 与 AI' },
     intro: {
-      en: 'Full-stack web apps, browser extensions and tools.',
-      zh: '全栈 Web 应用、浏览器插件和各类工具。'
+      en: 'Full-stack web apps, a browser extension and machine learning projects.',
+      zh: '全栈 Web 应用、浏览器插件和机器学习项目。'
     }
   },
   {

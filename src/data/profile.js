@@ -4,8 +4,9 @@ export const contact = {
   email: 'jarredr1@uci.edu',
   github: 'https://github.com/JarredRbw',
   location: { en: 'Irvine, CA', zh: '加州尔湾' },
-  // 把简历 PDF 放到 public/ 下并填入路径（例如 '/resume.pdf'），网站上就会显示下载按钮
-  resumeUrl: null
+  // 网站上的简历是去掉电话号码的版本，原件留在本地投递用
+  resumeUrl: '/resume.pdf',
+  photographyResumeUrl: '/resume-photography.pdf'
 }
 
 export const skillGroups = [
@@ -15,14 +16,26 @@ export const skillGroups = [
   },
   {
     title: { en: 'Web', zh: 'Web 开发' },
-    items: ['React', 'Next.js', 'HTML / CSS', 'Tailwind CSS', 'Supabase', 'PostgreSQL', 'MySQL']
+    items: ['React', 'Next.js', 'HTML / CSS', 'Tailwind CSS', 'Supabase', 'PostgreSQL', 'MySQL', 'OAuth', 'Git', 'Vercel', 'WeChat Mini Programs']
+  },
+  {
+    title: { en: 'AI & Computer Vision', zh: 'AI 与计算机视觉' },
+    items: ['YOLOv8', 'OpenCV', 'CNN / LSTM models', 'Raspberry Pi inference']
   },
   {
     title: { en: 'Systems & Hardware', zh: '系统与硬件' },
     items: ['Windows', 'macOS', 'Linux / Raspberry Pi', 'PC assembly', 'BIOS / UEFI', 'Drivers & peripherals']
   },
   {
-    title: { en: 'Networking & AV', zh: '网络与音视频' },
-    items: ['Router / AP setup', 'Ethernet cabling', 'Wi-Fi', 'Connectivity troubleshooting', 'Stage lighting', 'Live sound']
+    title: { en: 'Networking', zh: '网络' },
+    items: ['Router / AP setup', 'Ethernet cabling', 'Wi-Fi', 'Connectivity troubleshooting', 'Fault isolation']
+  },
+  {
+    title: { en: 'Photography & AV', zh: '摄影与音视频' },
+    items: ['Live-event photography', 'Photo selection & curation', 'Stage lighting', 'Microphone & audio setup']
+  },
+  {
+    title: { en: 'Spoken Languages', zh: '语言' },
+    items: ['Mandarin Chinese (native)', 'English']
   }
 ]

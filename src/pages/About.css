@@ -141,6 +141,90 @@ a.intro-contact-item:hover {
   max-width: 720px;
 }
 
+.experience-period {
+  margin-left: auto;
+  font-size: 0.85rem;
+  color: var(--text-subtle);
+  font-variant-numeric: tabular-nums;
+}
+
+.experience-figure {
+  margin-top: 1rem;
+  max-width: 480px;
+}
+
+.experience-figure img {
+  width: 100%;
+  display: block;
+  border: 1px solid var(--border);
+}
+
+.experience-figure figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--text-subtle);
+}
+
+/* 奖项 */
+.awards-list {
+  list-style: none;
+}
+
+.awards-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--border);
+  color: #444;
+  line-height: 1.6;
+}
+
+.awards-list li:last-child {
+  border-bottom: none;
+}
+
+.award-year {
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  color: var(--text-subtle);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 代码之外 */
+.life-text {
+  color: #444;
+  line-height: 1.7;
+  max-width: 720px;
+  margin-bottom: 1.5rem;
+}
+
+.life-photos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.life-photos img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+
+.life-photos figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--text-subtle);
+}
+
+@media (max-width: 768px) {
+  .life-photos {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* 理念 */
 .philosophy-quote {
   font-family: 'Times New Roman', 'Georgia', 'Times', serif;

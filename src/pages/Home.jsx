@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, ArrowDown, Code2, Wrench, Mail, FileText } from 'lucide-react'
+import { ArrowRight, ArrowDown, Code2, Wrench, Camera, Mail, FileText } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import ProjectCard from '../components/ProjectCard'
 import { projects } from '../data/projects'
@@ -9,8 +9,8 @@ import './Home.css'
 
 const copy = {
   en: {
-    eyebrow: 'UC Irvine · Irvine, CA',
-    tagline: 'I build web apps and keep computers, networks and AV gear running.',
+    eyebrow: 'Web development · IT support · Photography',
+    tagline: 'Computer Engineering student at UC Irvine.',
     viewProjects: 'View projects',
     contact: 'Contact me',
     resume: 'Resume',
@@ -18,12 +18,12 @@ const copy = {
     featured: 'Featured projects',
     allProjects: 'All projects',
     photography: 'Outside of code',
-    photographyText: 'I also shoot photos: city streets, museums, hikes and old architecture.',
+    photographyText: 'I also shoot photos: street scenes, landscapes, architecture and live events.',
     seePhotos: 'See photography'
   },
   zh: {
-    eyebrow: 'UC Irvine · 加州尔湾',
-    tagline: '我开发 Web 应用，也负责让电脑、网络和音视频设备正常运转。',
+    eyebrow: 'Web 开发 · IT 支持 · 摄影',
+    tagline: 'UC Irvine 计算机工程专业学生。',
     viewProjects: '查看项目',
     contact: '联系我',
     resume: '简历',
@@ -31,7 +31,7 @@ const copy = {
     featured: '精选项目',
     allProjects: '全部项目',
     photography: '代码之外',
-    photographyText: '我也喜欢摄影：城市街头、博物馆、徒步和古建筑。',
+    photographyText: '我也喜欢摄影：街拍、风光、建筑和现场活动。',
     seePhotos: '查看摄影作品'
   }
 }
@@ -52,17 +52,27 @@ const tracks = [
     icon: <Wrench size={28} />,
     title: { en: 'IT & Technical Support', zh: 'IT 与技术支持' },
     text: {
-      en: 'Building and upgrading PCs, setting up small networks, working on Windows, macOS and Linux, and running sound and lighting for live events.',
-      zh: '组装和升级电脑、搭建小型网络，熟悉 Windows、macOS 和 Linux，也做过现场演出的灯光音响。'
+      en: 'Building and upgrading PCs, setting up small wired and wireless networks, and troubleshooting Windows, macOS and Linux machines.',
+      zh: '组装和升级电脑、搭建小型有线和无线网络，排查 Windows、macOS 和 Linux 设备的问题。'
     },
-    tags: ['PC hardware', 'Windows / macOS / Linux', 'LAN / Wi-Fi', 'AV']
+    tags: ['PC hardware', 'Windows / macOS / Linux', 'LAN / Wi-Fi', 'Troubleshooting']
+  },
+  {
+    id: 'photo',
+    icon: <Camera size={28} />,
+    title: { en: 'Photography & Live Events', zh: '摄影与现场活动' },
+    text: {
+      en: 'Event photography at a school music festival, plus street, nature and museum work. I also ran lighting and sound for school drama festivals and talent shows.',
+      zh: '拍摄过学校音乐节等现场活动，也拍城市、自然和博物馆题材；还负责过学校戏剧节和才艺表演的灯光音响。'
+    },
+    tags: ['Event photography', 'Photo curation', 'Stage lighting', 'Live sound']
   }
 ]
 
 const previewPhotos = [
-  '/images/Assets/City/684416b7f4ccbccff372a9a495ea41fe.JPG',
-  '/images/Assets/Human/Museum/_DSC9794.JPG',
-  '/images/Assets/Hiking/_DSC8637.JPG'
+  '/photos/street/thumbs/street-03.jpg',
+  '/photos/landscape/thumbs/landscape-01.jpg',
+  '/photos/events/thumbs/events-02.jpg'
 ]
 
 const fadeUp = {
@@ -91,7 +101,7 @@ const Home = () => {
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
           <p className="hero-eyebrow">{c.eyebrow}</p>
-          <h1 className="hero-title">Bowei (Jarred) Ren</h1>
+          <h1 className="hero-title">Jarred Ren</h1>
           <p className="hero-tagline">{c.tagline}</p>
           <div className="hero-actions">
             <Link to="/projects" className="btn btn-light">

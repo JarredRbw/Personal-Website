@@ -24,7 +24,7 @@ const Footer = () => {
             GitHub
           </a>
         </div>
-        <p className="footer-copy">© {new Date().getFullYear()} Bowei (Jarred) Ren</p>
+        <p className="footer-copy">© {new Date().getFullYear()} Jarred Ren</p>
       </div>
     </footer>
   )
