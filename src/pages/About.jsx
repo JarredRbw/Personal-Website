@@ -201,7 +201,7 @@ const About = () => {
           transition={{ duration: 0.6 }}
         >
           <div className="intro-avatar">
-            <img src="/images/avatar.jpg" alt={lang === 'en' ? 'Jarred taking a photo' : 'Jarred 在拍照'} />
+            <img src="/images/avatar.jpg" alt={lang === 'en' ? 'Portrait of Jarred Ren' : 'Jarred Ren 的照片'} />
           </div>
 
           <div className="intro-text">

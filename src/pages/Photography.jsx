@@ -10,7 +10,7 @@ import './Photography.css'
 const copy = {
   en: {
     title: 'Photography',
-    intro: 'Street scenes, landscapes, architecture and live events. Click any photo to view it full screen.',
+    intro: 'Architecture, street scenes, landscapes and live events. Click any photo to view it full screen.',
     all: 'All',
     resume: 'Photography resume',
     close: 'Close',
@@ -19,7 +19,7 @@ const copy = {
   },
   zh: {
     title: '摄影',
-    intro: '街拍、风光、建筑和现场活动。点击任意照片可全屏浏览。',
+    intro: '建筑、街拍、风光和现场活动。点击任意照片可全屏浏览。',
     all: '全部',
     resume: '摄影方向简历',
     close: '关闭',

@@ -1,9 +1,9 @@
 // 摄影作品数据：由脚本根据 public/photos 生成，w/h 用于在图片加载前占位
 
 export const photoCategories = [
+  { id: 'architecture', label: { en: 'Architecture', zh: '建筑' } },
   { id: 'street', label: { en: 'Street', zh: '街拍' } },
   { id: 'landscape', label: { en: 'Landscape', zh: '风光' } },
-  { id: 'architecture', label: { en: 'Architecture', zh: '建筑' } },
   { id: 'events', label: { en: 'Events', zh: '现场活动' } },
   { id: 'museum', label: { en: 'Museum', zh: '博物馆' } }
 ]
