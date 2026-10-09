@@ -5,6 +5,7 @@ import Lightbox from '../components/Lightbox'
 import { photos, photoCategories } from '../data/photos'
 import { contact } from '../data/profile'
 import { useLanguage } from '../i18n/language'
+import { ease, fadeUpOnLoad } from '../utils/motion'
 import './Photography.css'
 
 const copy = {
@@ -30,12 +31,14 @@ const copy = {
 
 const PhotoGrid = ({ items, onOpen }) => (
   <div className="masonry">
-    {items.map((photo) => (
+    {items.map((photo, i) => (
       // 不用滚动进入视口的淡入动画：Safari 在多栏布局里检测不准，照片会一直透明
+      // 改用 CSS 动画在加载时依次淡入，--i 控制先后
       <button
         key={photo.src}
         type="button"
         className="masonry-item"
+        style={{ '--i': i }}
         onClick={() => onOpen(photo)}
       >
         <img
@@ -77,9 +80,7 @@ const Photography = () => {
       <div className="photography-page">
         <motion.header
           className="photography-header"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          {...fadeUpOnLoad}
         >
           <div>
             <h1>{c.title}</h1>
@@ -109,6 +110,13 @@ const Photography = () => {
             >
               {tab.label[lang]}
               <span className="category-count">{tab.count}</span>
+              {selectedCategory === tab.id && (
+                <motion.span
+                  className="category-indicator"
+                  layoutId="category-indicator"
+                  transition={{ duration: 0.35, ease }}
+                />
+              )}
             </button>
           ))}
         </nav>

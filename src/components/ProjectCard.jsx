@@ -1,18 +1,17 @@
 import { motion } from 'framer-motion'
 import { ExternalLink } from 'lucide-react'
 import { useLanguage } from '../i18n/language'
+import { stagger, hoverLift } from '../utils/motion'
 import './ProjectCard.css'
 
-const ProjectCard = ({ project, compact = false }) => {
+const ProjectCard = ({ project, index = 0, compact = false }) => {
   const { lang } = useLanguage()
 
   return (
     <motion.article
       className="project-card"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
+      {...stagger(index)}
+      {...hoverLift}
     >
       <h3>{project.title[lang]}</h3>
       <p className="project-summary">{project.summary[lang]}</p>

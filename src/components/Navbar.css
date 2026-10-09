@@ -74,9 +74,18 @@
   border-radius: 0;
 }
 
-.nav-links a:hover::after,
-.nav-links a.active::after {
+/* 悬停时的下划线；当前页用下面会滑动的 .nav-indicator */
+.nav-links a:not(.active):hover::after {
   width: 100%;
+}
+
+.nav-indicator {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #1a1a1a;
 }
 
 .nav-links {

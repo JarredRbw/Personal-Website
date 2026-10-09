@@ -3,6 +3,7 @@ import { Code2, Wrench } from 'lucide-react'
 import ProjectCard from '../components/ProjectCard'
 import { projects } from '../data/projects'
 import { useLanguage } from '../i18n/language'
+import { fadeUpOnLoad } from '../utils/motion'
 import './Projects.css'
 
 const groups = [
@@ -34,9 +35,7 @@ const Projects = () => {
       <div className="container">
         <motion.header
           className="page-header"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          {...fadeUpOnLoad}
         >
           <h1>{lang === 'en' ? 'Projects' : '项目'}</h1>
           <p>
@@ -58,8 +57,8 @@ const Projects = () => {
             <div className="projects-grid">
               {projects
                 .filter((p) => p.group === group.id)
-                .map((project) => (
-                  <ProjectCard key={project.id} project={project} />
+                .map((project, i) => (
+                  <ProjectCard key={project.id} project={project} index={i} />
                 ))}
             </div>
           </section>

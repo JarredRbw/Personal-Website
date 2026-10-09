@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { useLanguage } from '../i18n/language'
+import { ease } from '../utils/motion'
 import './Navbar.css'
 
 const navItems = [
@@ -60,6 +61,13 @@ const Navbar = () => {
               className={location.pathname === item.path ? 'active' : ''}
             >
               {item.label[lang]}
+              {location.pathname === item.path && (
+                <motion.span
+                  className="nav-indicator"
+                  layoutId="nav-indicator"
+                  transition={{ duration: 0.35, ease }}
+                />
+              )}
             </Link>
           ))}
           {langButton}

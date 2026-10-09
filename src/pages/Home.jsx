@@ -5,6 +5,7 @@ import ProjectCard from '../components/ProjectCard'
 import { projects } from '../data/projects'
 import { contact } from '../data/profile'
 import { useLanguage } from '../i18n/language'
+import { ease, fadeUp, stagger, hoverLift, heroContainer, heroItem } from '../utils/motion'
 import './Home.css'
 
 const copy = {
@@ -75,13 +76,6 @@ const previewPhotos = [
   '/photos/events/thumbs/events-02.jpg'
 ]
 
-const fadeUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-50px' },
-  transition: { duration: 0.6, ease: 'easeOut' }
-}
-
 const Home = () => {
   const { lang } = useLanguage()
   const c = copy[lang]
@@ -91,19 +85,27 @@ const Home = () => {
     <div className="home">
       {/* 首屏 */}
       <section className="hero">
-        <img className="hero-bg" src="/images/HeadPicture.jpeg" alt="" />
+        {/* 背景照片缓慢缩回原大小 */}
+        <motion.img
+          className="hero-bg"
+          src="/images/HeadPicture.jpeg"
+          alt=""
+          initial={{ scale: 1.08 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.8, ease }}
+        />
         <div className="hero-overlay" />
 
         <motion.div
           className="hero-content"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          variants={heroContainer}
+          initial="hidden"
+          animate="show"
         >
-          <p className="hero-eyebrow">{c.eyebrow}</p>
-          <h1 className="hero-title">Jarred Ren</h1>
-          <p className="hero-tagline">{c.tagline}</p>
-          <div className="hero-actions">
+          <motion.p className="hero-eyebrow" variants={heroItem}>{c.eyebrow}</motion.p>
+          <motion.h1 className="hero-title" variants={heroItem}>Jarred Ren</motion.h1>
+          <motion.p className="hero-tagline" variants={heroItem}>{c.tagline}</motion.p>
+          <motion.div className="hero-actions" variants={heroItem}>
             <Link to="/projects" className="btn btn-light">
               {c.viewProjects}
               <ArrowRight size={16} />
@@ -118,7 +120,7 @@ const Home = () => {
                 {c.resume}
               </a>
             )}
-          </div>
+          </motion.div>
         </motion.div>
 
         <motion.div
@@ -136,8 +138,8 @@ const Home = () => {
         <div className="container">
           <motion.h2 className="section-title" {...fadeUp}>{c.whatIDo}</motion.h2>
           <div className="tracks-grid">
-            {tracks.map((track) => (
-              <motion.div key={track.id} className="track-card" {...fadeUp}>
+            {tracks.map((track, i) => (
+              <motion.div key={track.id} className="track-card" {...stagger(i)} {...hoverLift}>
                 <div className="track-icon">{track.icon}</div>
                 <h3>{track.title[lang]}</h3>
                 <p>{track.text[lang]}</p>
@@ -157,8 +159,8 @@ const Home = () => {
         <div className="container">
           <motion.h2 className="section-title" {...fadeUp}>{c.featured}</motion.h2>
           <div className="featured-grid">
-            {featured.map((project) => (
-              <ProjectCard key={project.id} project={project} compact />
+            {featured.map((project, i) => (
+              <ProjectCard key={project.id} project={project} index={i} compact />
             ))}
           </div>
           <div className="section-more">
@@ -176,10 +178,10 @@ const Home = () => {
           <motion.h2 className="section-title" {...fadeUp}>{c.photography}</motion.h2>
           <p className="photo-teaser-text">{c.photographyText}</p>
           <Link to="/photography" className="photo-teaser" aria-label={c.seePhotos}>
-            {previewPhotos.map((src) => (
-              <div key={src} className="photo-teaser-item">
+            {previewPhotos.map((src, i) => (
+              <motion.div key={src} className="photo-teaser-item" {...stagger(i)}>
                 <img src={src} alt="" loading="lazy" />
-              </div>
+              </motion.div>
             ))}
           </Link>
           <div className="section-more">

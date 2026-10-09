@@ -78,10 +78,10 @@ const Lightbox = ({ items, index, onClose, onChange, labels }) => {
             key={item.src}
             className="lightbox-frame"
             style={{ aspectRatio: `${item.w} / ${item.h}` }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* 先显示已缓存的缩略图，大图加载完再覆盖 */}

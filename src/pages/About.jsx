@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { MapPin, Mail, Github, FileText } from 'lucide-react'
 import { contact, skillGroups } from '../data/profile'
 import { useLanguage } from '../i18n/language'
+import { fadeUp, fadeUpOnLoad } from '../utils/motion'
 import './About.css'
 
 const copy = {
@@ -179,13 +180,6 @@ const lifePhotos = [
   { src: '/images/life/mtb-thumb.jpg', full: '/images/life/mtb.jpg', caption: { en: 'Downhill mountain biking', zh: '山地车速降' } }
 ]
 
-const fadeUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-50px' },
-  transition: { duration: 0.6, ease: 'easeOut' }
-}
-
 const About = () => {
   const { lang } = useLanguage()
   const c = copy[lang]
@@ -196,9 +190,7 @@ const About = () => {
         {/* 个人介绍 */}
         <motion.section
           className="about-card about-intro"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          {...fadeUpOnLoad}
         >
           <div className="intro-avatar">
             <img src="/images/avatar.jpg" alt={lang === 'en' ? 'Portrait of Jarred Ren' : 'Jarred Ren 的照片'} />
